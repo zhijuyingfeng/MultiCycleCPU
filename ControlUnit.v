@@ -287,6 +287,11 @@ module ControlUnit(
 
     always@(negedge CLK)
     begin
+        if(StatusCode==3'b001)
+            begin
+                PCWre<=1'b0;
+            end
+            
       case(Op)
         6'b110100://beq
         begin
