@@ -7,7 +7,7 @@ module WriteRegDataSelector(
     output reg[31:0]WriteData
     );
     
-    always@(WrRegDSrc)
+    always@(WrRegDSrc or DB)
     begin
         if(WrRegDSrc==0)
             begin

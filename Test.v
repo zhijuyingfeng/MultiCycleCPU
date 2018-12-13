@@ -213,10 +213,10 @@ module Test();
       CLK=0;
       RST=0;
 //      i=0;
-      #20;
+      #5;
         CLK=!CLK;
         
-        forever #20
+        forever #5
         begin
             RST=1;
             CLK=!CLK;

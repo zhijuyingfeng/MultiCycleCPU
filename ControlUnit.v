@@ -58,7 +58,7 @@ module ControlUnit(
             begin
                 RegWre<=1;
                 WrRegDSrc<=0;
-                RegDst<=0;
+                RegDst<=2'b00;
                 PCSrc<=2'b11;
                 StatusCode<=3'b000;
             end
@@ -275,7 +275,7 @@ module ControlUnit(
                   RegDst<=2'b10;
                 end
 
-                6'b000010,6'b010010:
+                6'b000010,6'b010010://addi
                 begin
                     RegDst<=2'b01;
                 end
