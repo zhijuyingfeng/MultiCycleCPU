@@ -25,7 +25,7 @@ module RegisterFile(
     assign ReadData1={RegMem[ReadReg1<<2],RegMem[(ReadReg1<<2)+1],RegMem[(ReadReg1<<2)+2],RegMem[(ReadReg1<<2)+3]};
     assign ReadData2={RegMem[ReadReg2<<2],RegMem[(ReadReg2<<2)+1],RegMem[(ReadReg2<<2)+2],RegMem[(ReadReg2<<2)+3]};
     
-    always@(negedge CLK)
+    always@(posedge CLK)
     begin
         if(RegWre==1)
         begin

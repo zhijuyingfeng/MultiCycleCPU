@@ -43,6 +43,10 @@ module Test();
     wire [31:0] _PCSrc2;
     wire [31:0] _PCSrc3;
     wire [31:0] _InsDataOut;
+    wire [31:0] _ADROut;
+    wire [31:0] _BDROut;
+    wire [31:0] _ALUOutDROut;
+    wire [31:0] _DBDROut;
 //    wire [31:0] _IRReg;
 
     PC pc
@@ -85,7 +89,7 @@ module Test();
     (
         .RD(RD),
         .WR(WR),
-        .DAddr(_ALUResult),
+        .DAddr(_ALUOutDROut),
         .DataOut(_DMDataOut),
         .DataIn(_ReadData2),
         .CLK(CLK)
@@ -134,7 +138,7 @@ module Test();
     (
         .WrRegDSrc(WRRegDSrc),
         .PC4(_PCSrc0),
-        .DB(_DB),
+        .DB(_DBDROut),
         .WriteData(_WriteData)
     );
 
@@ -168,14 +172,14 @@ module Test();
     (
         .ALUSrcA(ALUSrcA),
         .sa(_Instruction[10:6]),
-        .ReadData1(_ReadData1),
+        .ReadData1(_ADROut),
         .A(_A)
     );
 
     ALUSrcBSelector alu_src_b_selector
     (
         .ALUSrcB(ALUSrcB),
-        .ReadData2(_ReadData2),
+        .ReadData2(_BDROut),
         .ExtendOut(_ExtendOut),
         .B(_B)
     );
@@ -206,6 +210,35 @@ module Test();
         .IRReg(_Instruction),
         .CLK(CLK)
     );
+    
+    ADR adr
+    (
+        .ReadData1(_ReadData1),
+        .CLK(CLK),
+        .ADROut(_ADROut)
+    );
+    
+    BDR bdr
+    (
+        .ReadData2(_ReadData2),
+        .CLK(CLK),
+        .BDROut(_BDROut)
+    );
+    
+    DBDR dbdr
+    (
+        .DB(_DB),
+        .CLK(CLK),
+        .DBDROut(_DBDROut)
+    );
+    
+    ALUOutDR aludrout
+    (
+        .CLK(CLK),
+        .ALUResult(_ALUResult),
+        .DROut(_ALUOutDROut)
+    );
+        
 
 //    integer i;
     initial
